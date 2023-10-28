@@ -19,6 +19,11 @@ platform to grow the business.
   and data scientists for deepend analysis and processing by making use of big data stack to ingest, clean, and transform the data.
 
 ### Data Source Understanding
+The data can be downloaded / scraped directly from [Lending Club](https://www.lendingclub.com/info/download-data.action).
+In this project, I downloaded the data from [data.world](https://data.world/jaypeedevlin/lending-club-loan-data-2007-11), and there were 2 files – data dictionary and the loan data itself.
+After downloading the file, I manually inspected the data to see possible logical groupings and ended up having 6 logical groups.
+There are 6 csv files corresponding to each table logical grouping with the field's description below.
+
 #### Customer
 - id: unique ID for the loan listing
 - member_id: unique ID for the borrower member
