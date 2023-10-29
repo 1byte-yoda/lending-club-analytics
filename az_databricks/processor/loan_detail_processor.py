@@ -8,8 +8,8 @@ import pyspark.sql.functions as F
 
 sys.path.append("/Workspace/Repos/lendingclub_pipeline/lending-club-analytics/az_databricks/")
 
-from az_databricks.utils.common_funcs import add_ingestion_date, add_surrogate_key, overwrite_table
-from az_databricks.utils.project_conf import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path, lending_analytics_dl_gold_path
+from az_databricks.utils.common_functions import add_ingestion_date, add_surrogate_key, overwrite_table
+from az_databricks.utils.project_config import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path
 
 # COMMAND ----------
 

@@ -10,8 +10,8 @@ import pyspark.sql.functions as F
 
 sys.path.append("/Workspace/Repos/lendingclub_pipeline/lending-club-analytics/az_databricks/")
 
-from az_databricks.utils.common_funcs import add_ingestion_date, add_surrogate_key, overwrite_table
-from az_databricks.utils.project_conf import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path, lending_analytics_dl_gold_path
+from az_databricks.utils.common_functions import add_ingestion_date, add_surrogate_key, overwrite_table
+from az_databricks.utils.project_config import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path
 
 # COMMAND ----------
 
@@ -84,7 +84,7 @@ payment_with_ingestion_date_df = add_ingestion_date(df=payment_renamed_cols_df)
 
 # COMMAND ----------
 
-payment_with_sk_df = payment_with_ingestion_date_df.withColumn("payment_key", F.sha2(F.concat("member_id", "loan_id", "latest_transaction_id"), numBits=256))
+payment_with_sk_df = add_surrogate_key("member_id", "loan_id", "latest_transaction_id", df=payment_with_ingestion_date_df, key_name="payment_key")
 
 # COMMAND ----------
 
