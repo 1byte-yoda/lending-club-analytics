@@ -14,11 +14,11 @@ import pyspark.sql.functions as F
 
 # COMMAND ----------
 
-parent_path = [str(Path(p).parent) for p in sys.path if "processor" in p]
+parent_path = [str(Path(p).parent / "utils") for p in sys.path if "processor" in p]
 sys.path.extend(parent_path)
 
-from conf import Config
-from helper import add_ingestion_date, add_surrogate_key, overwrite_table
+from utils.conf import Config
+from utils.helper import add_ingestion_date, add_surrogate_key, overwrite_table
 
 # COMMAND ----------
 
