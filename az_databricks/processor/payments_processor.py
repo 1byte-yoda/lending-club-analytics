@@ -1,5 +1,11 @@
 # Databricks notebook source
+dbutils.widgets.text("env", "prod")
+ENV = dbutils.widgets.get("env")
+
+# COMMAND ----------
+
 import sys
+from pathlib import Path
 
 from pyspark.sql.types import (
     StructType, StructField, FloatType, DateType, StringType, IntegerType
@@ -8,15 +14,19 @@ import pyspark.sql.functions as F
 
 # COMMAND ----------
 
-sys.path.append("/Workspace/Repos/lendingclub_pipeline/lending-club-analytics/az_databricks")
-sys.path.append("/live")
+parent_path = [str(Path(p).parent) for p in sys.path if "processor" in p]
+sys.path.extend(parent_path)
 
-from utils.common_functions import add_ingestion_date, add_surrogate_key, overwrite_table
-from utils.project_config import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path
+from conf import Config
+from helper import add_ingestion_date, add_surrogate_key, overwrite_table
 
 # COMMAND ----------
 
-file_path = f"{lending_analytics_dl_bronze_path}/loan_payment.csv"
+config = Config(env=ENV)
+
+# COMMAND ----------
+
+file_path = f"{config.lending_analytics_dl_bronze_path}/loan_payment.csv"
 
 # COMMAND ----------
 
@@ -115,7 +125,7 @@ final_payment_df = final_payment_df.withColumn("year_month", F.coalesce(F.date_f
 
 # COMMAND ----------
 
-save_path = f"{lending_analytics_dl_silver_path}/dim_payment"
+save_path = f"{config.lending_analytics_dl_silver_path}/dim_payment"
 
 # COMMAND ----------
 
