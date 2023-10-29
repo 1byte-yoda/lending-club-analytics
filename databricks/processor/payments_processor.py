@@ -117,9 +117,4 @@ save_path = f"{lending_analytics_dl_silver_path}/dim_payment"
 
 # COMMAND ----------
 
-(final_payment_df.write
-    .format("delta")
-    .partitionBy("year_month")
-    .option("path", save_path)
-    .mode("overwrite")
-    .save())
+overwrite_table(df=final_payment_df, save_path=save_path, partition_fields=["year_month"])
