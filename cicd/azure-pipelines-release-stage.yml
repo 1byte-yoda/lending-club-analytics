@@ -17,7 +17,7 @@ stages:
       databricks_host: $(dev-databricks-host)
       databricks_token: $(dev-databricks-token)
       databricks_repo_id: $(dev-databricks-repo-id)
-      deploy-path: $(dev-deploy-path)
+      deploy_path: $(dev-deploy-path)
 
 
 
