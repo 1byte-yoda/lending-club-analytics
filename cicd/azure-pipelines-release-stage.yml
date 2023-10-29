@@ -3,6 +3,7 @@ trigger:
 
 variables:
   - group: dbw-cicd-dev
+  - group: dbw-cicd-prod
 
 pool:
   vmImage: ubuntu-latest
@@ -10,14 +11,21 @@ pool:
 stages:
   - template: templates/databricks-deployment.yml
     parameters:
-      stage_id: "deploy_to_dev_environment"
+      stage_id: "databricks_deploy_to_dev_environment"
       env: "dev"
       environment_name: $(dev-environment-name)
-      pyspark_scripts_path: $(pyspark_scripts_folder_path)
       databricks_host: $(dev-databricks-host)
       databricks_token: $(dev-databricks-token)
       databricks_repo_id: $(dev-databricks-repo-id)
       deploy_path: $(dev-deploy-path)
 
-
-
+#  - template: templates/databricks-deployment.yml
+#    parameters:
+#      stage_id: "databricks_deploy_to_prod_environment"
+#      depends_on: ["databricks_deploy_to_dev_environment"]
+#      env: "prod"
+#      environment_name: $(prod-environment-name)
+#      databricks_host: $(prod-databricks-host)
+#      databricks_token: $(prod-databricks-token)
+#      databricks_repo_id: $(prod-databricks-repo-id)
+#      deploy_path: $(prod-deploy-path)
