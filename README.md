@@ -36,7 +36,9 @@ platform to grow the business.
 - Databricks Transformations and Processing will be tested using Pytest and will run as part of Azure Devops pipeline.
 - Pyspark scripts will undergo a flake8 linter and will be auto-formatted using black 
 
-### ER Diagram
+### Star Schema Diagram
+![Star Schema](images/star_schema.png)
+
 
 ### Data Source Understanding
 The data can be downloaded / scraped directly from [Lending Club](https://www.lendingclub.com/info/download-data.action).
