@@ -71,10 +71,6 @@ loan_without_null_df = loan_column_renamed_df.replace("null", None)
 
 # COMMAND ----------
 
-display(loan_without_null_df)
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC
 # MAGIC ### Process term field 
