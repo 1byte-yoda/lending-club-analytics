@@ -1,0 +1,23 @@
+trigger:
+  - master
+
+variables:
+  - group: dbw-cicd-dev
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - template: templates/databricks-deployment.yml
+    parameters:
+      stage_id: "deploy_to_dev_environment"
+      env: "dev"
+      environment_name: $(dev-environment-name)
+      pyspark_scripts_path: $(pyspark_scripts_folder_path)
+      databricks_host: $(dev-databricks-host)
+      databricks_token: $(dev-databricks-token)
+      databricks_repo_id: $(dev-databricks-repo-id)
+      deploy-path: $(dev-deploy-path)
+
+
+
