@@ -5,10 +5,11 @@ from pyspark.sql.types import StructType, StructField, FloatType, StringType, In
 
 # COMMAND ----------
 
-sys.path.append("/Workspace/Repos/lendingclub_pipeline/lending-club-analytics/az_databricks/")
+sys.path.append("/Workspace/Repos/lendingclub_pipeline/lending-club-analytics/az_databricks")
+sys.path.append("/live")
 
-from az_databricks.utils.common_functions import add_ingestion_date, add_surrogate_key, overwrite_table
-from az_databricks.utils.project_config import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path
+from utils.common_functions import add_ingestion_date, add_surrogate_key, overwrite_table
+from utils.project_config import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path
 
 # COMMAND ----------
 
