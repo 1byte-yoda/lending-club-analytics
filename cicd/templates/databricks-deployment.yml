@@ -1,0 +1,71 @@
+parameters:
+  - name: stage_id
+    type: string
+  - name: depends_on
+    type: object
+    default: []
+  - name: env
+    type: string
+  - name: environment_name
+    type: string
+  - name: pyspark_scripts_path
+    type: string
+  - name: databricks_host
+    type: string
+  - name: databricks_token
+    type: string
+  - name: databricks_repo_id
+    type: string
+  - name: deploy_path
+    type: string
+
+stages:
+  - stage: ${{ parameters.stage_id }}
+    displayName: "Deploying to [${{upper(parameters.env)}}] Environment"
+    dependsOn: ${{ parameters.depends_on }}
+
+    jobs:
+      - deployment: ${{ parameters.stage_id }}
+        environment: '${{ parameters.environment_name }}'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: pip install databricks-cli
+                  displayName: "install databricks-cli"
+
+                - script: |
+                    echo "${{ parameters.databricks_host }}
+                    ${{ parameters.databricks_token }}" | databricks configure --token
+                  displayName: 'configure databricks-cli'
+
+                - script: |
+                    databricks repos update --branch develop --repo-id ${{ parameters.databricks_repo_id }}
+                  displayName: 'checkout develop branch'
+
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                    source: current
+                    artifact: 'Databricks'
+                    downloadPath: $(System.ArtifactsDirectory)/databricks
+
+                - script: 'ls $(System.ArtifactsDirectory)/databricks'
+
+                - script: |
+                    FOLDER=${{ parameters.deploy_path }}
+                    mkdir $FOLDER
+                    echo $FOLDER
+                    folder=$(databricks workspace ls --id $FOLDER)
+                    if [[ "$folder" = Error* ]] ; then
+                    echo "Folder $FOLDER not found. Skipping..."
+                    else
+                    echo "Deleting $FOLDER"
+                    databricks workspace rm $FOLDER --recursive
+                    fi
+                  displayName: 'Delete old release'
+
+                - script: |
+                    FOLDER=${{ parameters.deploy_path }}
+                    echo $FOLDER
+                    databricks workspace import_dir $(System.ArtifactsDirectory)/databricks $FOLDER --exclude-hidden-files
+                  displayName: 'New release'
