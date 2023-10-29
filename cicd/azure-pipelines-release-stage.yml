@@ -9,7 +9,7 @@ pool:
 
 stages:
   - template: templates/databricks-deployment.yml
-  - parameters:
+    parameters:
       stage_id: "deploy_to_dev_environment"
       env: "dev"
       environment_name: $(dev-environment-name)
