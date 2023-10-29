@@ -1,14 +1,15 @@
 # Databricks notebook source
-# MAGIC %run "../utils/project_config"
-
-# COMMAND ----------
-
-# MAGIC %run "../utils/common_functions"
-
-# COMMAND ----------
+import sys
 
 from pyspark.sql.types import StructType, StructField, FloatType, DateType, StringType, IntegerType
 import pyspark.sql.functions as F
+
+# COMMAND ----------
+
+sys.path.append("/Workspace/Repos/lendingclub_pipeline/lending-club-analytics/az_databricks/")
+
+from az_databricks.utils.common_funcs import add_ingestion_date, add_surrogate_key, overwrite_table
+from az_databricks.utils.project_conf import lending_analytics_dl_bronze_path, lending_analytics_dl_silver_path, lending_analytics_dl_gold_path
 
 # COMMAND ----------
 
