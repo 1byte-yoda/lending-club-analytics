@@ -1,1 +1,2 @@
 pyspark==3.4.1
+databricks-cli==0.18.0

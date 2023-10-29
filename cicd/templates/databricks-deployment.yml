@@ -8,8 +8,6 @@ parameters:
     type: string
   - name: environment_name
     type: string
-  - name: pyspark_scripts_path
-    type: string
   - name: databricks_host
     type: string
   - name: databricks_token
