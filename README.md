@@ -205,32 +205,17 @@ For the 2 most recent years I will derive below questions:
 3. What is the total loan score for each customer for the 2 most recent years?
 4. How many customers do we have per employment length? (Employment Stability)
 5. How many customers have a own home per month and state?
+6. How many customers has a low count of delinquency incidences per month and state?
+7. What is the percentage of derogatory borrowers per month and state?
+8. What is the total received late fees per month and state?
 
 #### Premium Customer Conversion Campaign
 Here, I want to start a campaign to increase the number of premium customers
 For the 2 most recent years I will derive below questions:
 1. What is the total premium account holder ration for the past 2 years?
-2. How many Premium Customers do we have per different age brackets and country?
+2. How many Premium Customers do we have per different age brackets and state?
 3. What is the percentage of premium users per state and country?
-4. What is the average Premium Customer Age per state and country?
-
-#### Investor Retention
-I want to monitor the investor's performance and increase their retention to the platform.
-For the 2 most recent years I will derive below questions:
-1. What is the expected returns to funded amount ratio for each investor?
-2. What is the projected loan score vs. the actual performance score per investor? (Investor's ROI)
-3. How long does it take for each investor to fully fund a loan?
-4. How consistent are payments received as scheduled?
-5. What is the distribution of different types of investors?
-
-#### Lessen Defaulters Campaign
-I want to lessen the defaulters in the platform and covert them into a more trustworthy borrowers
-For the 2 most recent years I will derive below questions:
-1. What is the monthly default rate ratio?
-2. How many late fees are there per month?
-3. What is the hardship plan utilization per month?
-4. What is the percentage of borrowers with derogatory public records per month?
-5. How frequent delinquency incidents happen per month?
+4. What is the average Premium Customer Age per state?
 
 ### Business Level Field / Formula Reference
 #### Customer Data
