@@ -127,15 +127,15 @@ loan_with_sk_df = add_surrogate_key("member_id", "loan_id", "loan_amount", df=lo
 
 # COMMAND ----------
 
-dim_investor_df = spark.read.format("delta").load(f"{lending_analytics_dl_silver_path}/dim_investor_loan")
+dim_investor_df = spark.read.format("delta").load(f"{config.lending_analytics_dl_silver_path}/dim_investor_loan")
 
-dim_payment_df = spark.read.format("delta").load(f"{lending_analytics_dl_silver_path}/dim_payment")
+dim_payment_df = spark.read.format("delta").load(f"{config.lending_analytics_dl_silver_path}/dim_payment")
 
-dim_defaulter_df = spark.read.format("delta").load(f"{lending_analytics_dl_silver_path}/dim_loan_defaulter")
+dim_defaulter_df = spark.read.format("delta").load(f"{config.lending_analytics_dl_silver_path}/dim_loan_defaulter")
 
-dim_account_df = spark.read.format("delta").load(f"{lending_analytics_dl_silver_path}/dim_account")
+dim_account_df = spark.read.format("delta").load(f"{config.lending_analytics_dl_silver_path}/dim_account")
 
-dim_customer_df = spark.read.format("delta").load(f"{lending_analytics_dl_silver_path}/dim_customer")
+dim_customer_df = spark.read.format("delta").load(f"{config.lending_analytics_dl_silver_path}/dim_customer")
 
 
 # COMMAND ----------
