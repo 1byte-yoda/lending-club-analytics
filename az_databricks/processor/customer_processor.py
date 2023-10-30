@@ -82,19 +82,6 @@ customer_with_age_bracket_df = customer_renamed_cols_df.withColumn(
 
 # MAGIC %md
 # MAGIC
-# MAGIC ### Add loan_score Field
-# MAGIC Loan score will help identify borrowers with lesser risk. It will be calculated using the following logic:
-# MAGIC
-# MAGIC loan_score = (payment_history_pts * .20) + (defaulters_history_pts * .45) + (financial_health_pts * .35)
-
-# COMMAND ----------
-
-
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC
 # MAGIC ### Add ingestion_date field for Incremental Loading metadata
 
 # COMMAND ----------
