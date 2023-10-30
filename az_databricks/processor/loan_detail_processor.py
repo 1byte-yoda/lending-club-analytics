@@ -174,6 +174,7 @@ final_fact_loan_df = loan_with_dim_keys_df.select(
     F.col("payment_key"),
     F.col("loan_defaulter_key"),
     F.col("account_key"),
+    F.col("customer_key"),
     F.col("loan_amount"),
     F.col("funded_amount"),
     F.col("term_months"),

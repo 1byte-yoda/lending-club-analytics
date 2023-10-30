@@ -5,6 +5,7 @@ ENV = dbutils.widgets.get("env")
 # COMMAND ----------
 
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType
+from pyspark.sql import functions as F
 
 # COMMAND ----------
 
@@ -61,11 +62,44 @@ customer_renamed_cols_df = (customer_df.withColumnRenamed("fst_name", "first_nam
 
 # MAGIC %md
 # MAGIC
+# MAGIC ### Add age_bracket Field
+# MAGIC - Youngsters = >= 18 & <= 25
+# MAGIC - Working class = > 25 & <= 45
+# MAGIC - Middle Age = > 45 & <= 59
+# MAGIC - Senior Citizen > 60
+
+# COMMAND ----------
+
+customer_with_age_bracket_df = customer_renamed_cols_df.withColumn(
+    "age_bracket", 
+    F.when(F.col("age").between(F.lit("18"), F.lit("25")), "Youngsters")
+    .when(F.col("age").between(F.lit("25"), F.lit("45")), "Working class")
+    .when(F.col("age").between(F.lit("45"), F.lit("59")), "Middle age")
+    .when(F.col("age") > F.lit("60"), "Senior citizen")
+)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC
+# MAGIC ### Add loan_score Field
+# MAGIC Loan score will help identify borrowers with lesser risk. It will be calculated using the following logic:
+# MAGIC
+# MAGIC loan_score = (payment_history_pts * .20) + (defaulters_history_pts * .45) + (financial_health_pts * .35)
+
+# COMMAND ----------
+
+
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC
 # MAGIC ### Add ingestion_date field for Incremental Loading metadata
 
 # COMMAND ----------
 
-customer_with_ingest_date_df = add_ingestion_date(df=customer_renamed_cols_df)
+customer_with_ingest_date_df = add_ingestion_date(df=customer_with_age_bracket_df)
 
 # COMMAND ----------
 
