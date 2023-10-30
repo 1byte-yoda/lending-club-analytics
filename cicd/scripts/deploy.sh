@@ -18,4 +18,5 @@ echo "4" "Publishing New Release"
 FOLDER=${deploy_path}
 echo $FOLDER
 databricks workspace import_dir az_databricks $FOLDER --exclude-hidden-files
+databricks workspace rm --recursive $FOLDER/lc_utils.egg-info
 
