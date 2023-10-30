@@ -4,16 +4,10 @@ ENV = dbutils.widgets.get("env")
 
 # COMMAND ----------
 
-import sys
-from pathlib import Path
-
 from pyspark.sql.types import StructType, StructField, FloatType, DateType, StringType, IntegerType
 import pyspark.sql.functions as F
 
 # COMMAND ----------
-
-parent_path = [str(Path(p).parent / "utils") for p in sys.path if "processor" in p]
-sys.path.extend(parent_path)
 
 from utils.conf import Config
 from utils.helper import add_ingestion_date, add_surrogate_key, overwrite_table
